@@ -38,6 +38,8 @@
 # License for the specific language governing permissions and limitations under 
 # the License.
 import os
+
+from gdt.core.heasarc import BaseFinder
 from ..finders import MaxiEventsFinder
 from ..time import *
 
@@ -58,7 +60,7 @@ class GscEventsFinder(MaxiEventsFinder):
             bitrate (str): Either 'low' or 'med' for low and medium bitrates,
                            respectively.
         """
-        self._args = self._validate(time, bitrate)
+        BaseFinder.cd(self, time, bitrate)
 
     def get_event(self, download_dir, pixels=None, **kwargs):
         """Download the MAXI GSC event files for the day.

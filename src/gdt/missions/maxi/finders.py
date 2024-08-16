@@ -39,13 +39,13 @@
 # the License.
 import os
 from math import floor
-from gdt.core.heasarc import FtpFinder
+from gdt.core.heasarc import BaseFinder
 from .time import *
 
 __all__ = ['MaxiAuxilFinder']
 
 
-class MaxiFinder(FtpFinder):
+class MaxiFinder(BaseFinder):
     """
     Base class for finding MAXI data on HEASARC.
     
@@ -63,7 +63,7 @@ class MaxiFinder(FtpFinder):
         Args:
             time (astropy.time.Time, optional): The time object
         """
-        self._args = self._validate(time)
+        super().cd(time)
 
     def _construct_path(self, time_obj):
         """Constructs the FTP path for a time.
